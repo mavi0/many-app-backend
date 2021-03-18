@@ -23,8 +23,7 @@ def push_result():
     result = json.loads(request.get_data().decode())
     if not auth(result.get("id")):
         result["id"] = 0
-    
-    logger.info("Result dump: " + result)
+    logger.info("Result dump: " + result) #TODO: This whole bit
     return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 @app.route('/api/authid', methods=['GET', 'POST'])
