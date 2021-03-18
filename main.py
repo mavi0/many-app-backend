@@ -18,7 +18,7 @@ def auth(request_id):
     logger.info("ID: " + request_id +  " failed to authenticate")
     return False
 
-@app.route('/api/pushresult', methods=['GET', 'POST'])
+@app.route('/pushresult', methods=['GET', 'POST'])
 def push_result():
     result = json.loads(request.get_data().decode())
     if not auth(result.get("id")):
@@ -26,7 +26,7 @@ def push_result():
     logger.info("Result dump: " + result) #TODO: This whole bit
     return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
-@app.route('/api/authid', methods=['GET', 'POST'])
+@app.route('/authid', methods=['GET', 'POST'])
 def auth_id():
     request_id = json.loads(request.get_data().decode()).get("id")
     if not auth(request_id):

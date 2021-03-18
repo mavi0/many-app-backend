@@ -6,7 +6,7 @@ Backend api for the many speedtest app, used to auth ID's and translate json obj
 
 ### Authenticate ID
 
-Authenticating a given user ID with the system: ```/api/authid```
+Authenticating a given user ID with the system: ```/authid```
 
 Example of a valid POST request:
 ```json
@@ -22,7 +22,7 @@ Responses:
 
 ### Push Result
 
-Pushing a result to the system: ```/api/pushresult```
+Pushing a result to the system: ```/pushresult```
 
 Example of a valid POST request:
 ```json
