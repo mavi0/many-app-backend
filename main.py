@@ -9,7 +9,7 @@ coloredlogs.install(level='INFO')
 app = Flask(__name__)
 
 def auth(request_id):
-    with open('data/id.json') as f:
+    with open('data/users.json') as f:
         users = json.load(f)
     for user in users.get("users"):
         if request_id == user.get("id"):
