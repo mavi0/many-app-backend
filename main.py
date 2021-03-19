@@ -13,7 +13,7 @@ def auth(request_id):
         users = json.load(f)
     for user in users.get("users"):
         if request_id == user.get("id"):
-            logger.info("ID: " + request_id +  " authenticated as user " + user.get("username"))
+            logger.info("ID [" + str(request_id) +  "] authenticated as user [" + user.get("username") + "]")
             return True
     logger.info("ID: " + request_id +  " failed to authenticate")
     return False
@@ -23,12 +23,13 @@ def push_result():
     result = json.loads(request.get_data().decode())
     if not auth(result.get("id")):
         result["id"] = 0
-    logger.info("Result dump: " + result) #TODO: This whole bit
+    logger.info("Result dump: " + json.dumps(result, indent=4, sort_keys=True)) #TODO: This whole bit
     return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 @app.route('/authid', methods=['GET', 'POST'])
 def auth_id():
     request_id = json.loads(request.get_data().decode()).get("id")
+    print(request_id)
     if not auth(request_id):
         abort(404, description="ID not found")
     return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
